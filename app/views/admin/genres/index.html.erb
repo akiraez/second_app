@@ -1,0 +1,38 @@
+<%= render 'layouts/admin_header' %>
+
+<h2>ジャンル一覧・追加</h2>
+
+    <table>
+      <tr>
+        <%= form_for [:admin, @genre] do |f| %>
+        <td>ジャンル</td><td><%= f.text_field :name %></td>
+
+        <td><%= f.radio_button :effective_flag,"true" %>有効</td>
+
+        <td><%= f.radio_button :effective_flag,"false" %>無効</td>
+
+        <td><%= f.submit '追加' %></td>
+        <% end %>
+      </tr>
+    </table>
+
+<table class="table table-hover table-inverse">
+  <tr>
+    <th>ジャンル</th><th>状態</th><th></th>
+  </tr>
+  <% @genres.each do |genre| %>
+  <tr>
+    <td><%= genre.name %></td>
+
+    <td>
+      <% if genre.effective_flag == true %>
+      有効
+      <% else %>
+      無効
+    <% end %>
+    </td>
+
+    <td><%= link_to"編集",edit_admin_genre_path(genre.id) %></td>
+  </tr>
+<% end %>
+</table>

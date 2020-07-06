@@ -1,0 +1,28 @@
+<%= render 'layouts/public_header' %>
+
+<h2>配送先新規登録</h2>
+
+<%= form_for (@adress) do |f| %>
+
+<%= f.hidden_field :end_user_id, :value => @end_user.id %>
+<table>
+
+  <tr>
+    <td>宛名</td><td><%= f.text_field :name %></td>
+  </tr>
+
+  <tr>
+    <td>住所</td><td><%= f.text_field :address %></td>
+  </tr>
+
+  <tr>
+    <td>郵便番号</td><td><%= f.text_field :post_number %></td>
+  </tr>
+
+</table>
+
+<div>
+  <%= f.submit '新規登録' %>
+</div>
+
+<% end %>

@@ -1,0 +1,48 @@
+<%= render 'layouts/public_header' %>
+<h2>登録情報編集</h2>
+
+<%= form_for(@end_user) do |f| %>
+<table>
+  <tr>
+    <td>名前</td>
+
+    <td>(姓)</td>
+    <td><%= f.text_field :first_name %></td>
+
+    <td>(名)</td>
+    <td><%= f.text_field :under_name %></td>
+  </tr>
+
+  <tr>
+    <td>フリガナ</td>
+
+    <td>(セイ)</td>
+    <td><%= f.text_field :kana_first_name %></td>
+
+    <td>(メイ)</td>
+    <td><%= f.text_field :kana_under_name %></td>
+    </tr>
+  <tr>
+    <td>メールアドレス</td>
+    <td></td>
+    <td><%= f.email_field :email %></td>
+  </tr>
+
+  <tr>
+    <td>郵便番号(ハイフンなし)</td>
+    <td></td>
+    <td><%= f.text_field :post_number %></td>
+  </tr>
+
+  <tr>
+    <td>住所</td>
+    <td></td>
+    <td><%= f.text_field :address %></td>
+  </tr>
+
+</table>
+  <div class="actions">
+    <%= f.submit "編集内容を保存する" %>
+  </div>
+<% end %>
+<div><%=link_to "退会確認画面へ", end_user_confirmation_path %></div>

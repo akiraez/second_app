@@ -1,0 +1,26 @@
+<%= render 'layouts/admin_header' %>
+<h2>会員一覧</h2>
+
+<table class="table table-hover table-inverse">
+  <tr>
+    <th>会員ID</th><th>氏名</th><th>メールアドレス</th><th>ステータス</th>
+  </tr>
+
+  <% @end_users.each do |end_user| %>
+  <tr>
+    <td><%= end_user.id %></td>
+
+    <td><%= end_user.first_name %><%= end_user.under_name %></td>
+
+    <td><%= end_user.email %></td>
+
+    <td>
+      <% if end_user.is_active_member_status == true %>
+      有効
+      <% else %>
+      無効
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+  </table>

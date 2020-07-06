@@ -1,0 +1,53 @@
+<%= render 'layouts/public_header' %>
+<h2>注文情報確認</h2>
+
+<table class="table table-hover table-inverse">
+  <tr>
+    <th>商品画像</th><th>商品名</th><th>単価(税込)</th><th>数量</th><th>小計</th>
+  </tr>
+
+  <% @sum = 0 %>
+
+  <% @cart_items.each do |cart_item| %>
+  <tr>
+    <td><%= attachment_image_tag(cart_item.item, :image, :fill, 50, 50) %></td>
+
+    <td><%= cart_item.item.name %></td>
+
+    <td><%= BigDecimal(cart_item.item.price_excluding_tax*1.1.to_d).floor %>円</td>
+
+    <td><%= cart_item.amount %></td>
+
+    <td><%= BigDecimal(cart_item.item.price_excluding_tax*1.1.to_d * cart_item.amount).floor %>円</td>
+
+    <td><% @sum += BigDecimal(cart_item.item.price_excluding_tax*1.1.to_d * cart_item.amount).floor %></td>
+  </tr>
+  <% end %>
+</table>
+
+<%= form_for @order do |f| %>
+
+<%= f.hidden_field :end_user_id, :value => @end_user.id %>
+
+<%= f.hidden_field :method_payment %>
+
+<%= f.hidden_field :total_payment,  :value => @sum %>
+
+<%= f.hidden_field :post_number, value:@order.post_number %>
+<%= f.hidden_field :address, value: @order.address %>
+<%= f.hidden_field :name, value: @order.name %>
+
+<table class="table">
+  <th>請求金額</th><th>支払い方法</th><th>配送先</th>
+  <tr>
+    <td><%= @sum %>円</td>
+
+    <td><%= @order.method_payment_i18n %></td>
+
+    <td><%= @order.post_number %><%= @order.address %><%= @order.name %></td>
+  </tr>
+</table>
+<div>
+  <%= f.submit '購入を確定する', "data-confirm" => "OK?" %>
+</div>
+<% end %>

@@ -1,0 +1,25 @@
+<header class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container">
+    <ul class='nav navbar-nav navbar-left' >
+      <li><%= link_to"ロゴ",admin_top_path %></li>
+    </ul>
+
+  <nav>
+    <ul class="nav navbar-nav navbar-right">
+      <% if admin_signed_in? %>
+      <!-- <p>検索</p>
+      <%# <%= form_tag(admin_items_path,:method => 'get') do %>
+      <%# <%= text_field_tag :name %>
+      <%# <%= submit_tag 'Search' %> %> %>
+      <%# <% end %> --> %>
+
+      <li><%=link_to"商品一覧", admin_items_path %>
+      <li><%=link_to"会員一覧", admin_end_users_path %>
+      <li><%=link_to"注文履歴一覧", admin_orders_path %> 
+      <li><%=link_to"ジャンル一覧", admin_genres_path %>
+      <li><%=link_to"ログアウト" ,destroy_admin_session_path, method: :delete %></li>
+      <% end %>
+    </ul>
+  </nav>
+</div>
+</header>

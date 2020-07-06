@@ -1,0 +1,23 @@
+<%= render 'layouts/public_header' %>
+
+<h2>配送先一覧</h2>
+
+<table class="table table-hover table-inverse">
+  <tr>
+    <th>宛名</th><th>住所</th><th>郵便番号</th><th></th>
+  </tr>
+
+  <% @adresses.each do |adress| %>
+  <tr>
+
+    <td><%= adress.name %></td>
+
+    <td><%= adress.address %></td>
+
+    <td><%= adress.post_number %>
+
+    <td><%=link_to"削除",adress_path(adress.id), method: :delete, "data-confirm" => "OK？" %></td>
+    <% end %>
+</table>
+
+<%=link_to"配送先登録へ",new_adress_path, class:"btn-sm btn-success" %>

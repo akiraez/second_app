@@ -1,0 +1,14 @@
+<%= render 'layouts/admin_header' %>
+<h2>ジャンル編集</h2>
+    <table>
+      <tr>
+        <%= form_for [:admin, @genre] do |f| %>
+        <td>ジャンル</td><td><%= f.text_field :name %></td>
+
+        <td><%= f.radio_button :effective_flag,"true" %>有効</td>
+        <td><%= f.radio_button :effective_flag,"false" %>無効</td>
+
+        <td><%= f.submit '変更を保存する' %></td>
+        <% end %>
+      </tr>
+    </table>
